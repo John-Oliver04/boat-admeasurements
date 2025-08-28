@@ -147,25 +147,27 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col pb-20">
       {/* Header */}
-      <div className="bg-gray-800 p-6 rounded-lg m-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="bg-blue-600 p-3 rounded-lg">
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+      <div className="bg-gray-800 p-4 sm:p-6 rounded-lg m-2 sm:m-4 lg:m-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <div className="bg-blue-600 p-2 sm:p-3 rounded-lg">
+              <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
               </svg>
             </div>
             <div>
-              <h1 className="text-2xl font-bold">Boat Admeasurement</h1>
-              <p className="text-gray-400">Maritime Certification System</p>
+              <h1 className="text-xl sm:text-2xl font-bold">Boat Admeasurement</h1>
+              <p className="text-gray-400 text-sm sm:text-base">Maritime Certification System</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-gray-400">Total Records</span>
-            <span className="text-2xl font-bold">{boats.length}</span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+            <div className="flex items-center space-x-2">
+              <span className="text-gray-400 text-sm">Total Records</span>
+              <span className="text-xl sm:text-2xl font-bold">{boats.length}</span>
+            </div>
             <button
               onClick={exportToExcel}
-              className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg flex items-center space-x-2"
+              className="bg-green-600 hover:bg-green-700 px-3 sm:px-4 py-2 rounded-lg flex items-center space-x-2 text-sm sm:text-base w-full sm:w-auto justify-center"
             >
               <Download className="w-4 h-4" />
               <span>Export All</span>
@@ -175,19 +177,19 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <div className="mx-6 mb-6">
-        <div className="bg-gray-800 p-4 rounded-lg flex items-center space-x-4">
+      <div className="mx-2 sm:mx-4 lg:mx-6 mb-4 sm:mb-6">
+        <div className="bg-gray-800 p-3 sm:p-4 rounded-lg flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
           <button
             onClick={() => {
               setShowForm(true);
               setEditingBoat(null);
             }}
-            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg flex items-center space-x-2"
+            className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm sm:text-base"
           >
             <Plus className="w-4 h-4" />
             <span>New Record</span>
           </button>
-          <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg flex items-center space-x-2">
+          <button className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm sm:text-base">
             <List className="w-4 h-4" />
             <span>All Records</span>
           </button>
@@ -195,24 +197,24 @@ export default function Home() {
       </div>
 
       {/* Search and Sort */}
-      <div className="mx-6 mb-6">
-        <div className="bg-gray-800 p-4 rounded-lg flex items-center justify-between">
-          <div className="flex items-center space-x-4 flex-1">
-            <div className="relative flex-1 max-w-md">
-              <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+      <div className="mx-2 sm:mx-4 lg:mx-6 mb-4 sm:mb-6">
+        <div className="bg-gray-800 p-3 sm:p-4 rounded-lg flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+          <div className="flex-1">
+            <div className="relative">
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search boats or owners..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-gray-700 text-white pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full bg-gray-700 text-white pl-9 sm:pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
               />
             </div>
           </div>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base w-full sm:w-auto"
           >
             <option value="date">Sort by Date</option>
             <option value="name">Sort by Name</option>
@@ -222,79 +224,79 @@ export default function Home() {
       </div>
 
       {/* Boat Records */}
-      <div className="mx-6 space-y-4">
+      <div className="mx-2 sm:mx-4 lg:mx-6 space-y-3 sm:space-y-4">
         {filteredBoats.map((boat) => (
-          <div key={boat.id} className="bg-gray-800 p-6 rounded-lg">
-            <div className="flex items-start justify-between">
+          <div key={boat.id} className="bg-gray-800 p-4 sm:p-6 rounded-lg">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
               <div className="flex-1">
-                <h3 className="text-xl font-bold mb-2">{boat.ownerName}</h3>
-                <p className="text-gray-400 mb-4">Owner: {boat.ownerAddress}</p>
+                <h3 className="text-lg sm:text-xl font-bold mb-2">{boat.ownerName}</h3>
+                <p className="text-gray-400 mb-4 text-sm sm:text-base break-words">Owner: {boat.ownerAddress}</p>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
                   <div>
-                    <span className="text-gray-400 text-sm">Builder:</span>
-                    <p className="font-medium">{boat.boatBuilder}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">Builder:</span>
+                    <p className="font-medium text-sm sm:text-base break-words">{boat.boatBuilder}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">Year:</span>
-                    <p className="font-medium">{boat.yearOfBuild}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">Year:</span>
+                    <p className="font-medium text-sm sm:text-base">{boat.yearOfBuild}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">Engine:</span>
-                    <p className="font-medium">{boat.engineMake}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">Engine:</span>
+                    <p className="font-medium text-sm sm:text-base break-words">{boat.engineMake}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">Power:</span>
-                    <p className="font-medium">{boat.horsePower}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">Power:</span>
+                    <p className="font-medium text-sm sm:text-base">{boat.horsePower}</p>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4">
                   <div>
-                    <span className="text-gray-400 text-sm">RL:</span>
-                    <p className="font-medium">{boat.registerLength}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">RL:</span>
+                    <p className="font-medium text-sm sm:text-base">{boat.registerLength}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">RB:</span>
-                    <p className="font-medium">{boat.registerBreadth}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">RB:</span>
+                    <p className="font-medium text-sm sm:text-base">{boat.registerBreadth}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">RD:</span>
-                    <p className="font-medium">{boat.registerDepth}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">RD:</span>
+                    <p className="font-medium text-sm sm:text-base">{boat.registerDepth}</p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">TL:</span>
-                    <p className="font-medium">{boat.tonnageLength}</p>
+                    <span className="text-gray-400 text-xs sm:text-sm">TL:</span>
+                    <p className="font-medium text-sm sm:text-base">{boat.tonnageLength}</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4 text-sm text-gray-400">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-1 sm:space-y-0 text-xs sm:text-sm text-gray-400">
                   <span>📅 Created: {boat.createdAt}</span>
                   <span>Updated: {boat.updatedAt}</span>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-2">
+              <div className="flex lg:flex-col items-center lg:items-end space-x-2 lg:space-x-0 lg:space-y-2 mt-4 lg:mt-0">
                 <button
                   onClick={() => exportToPDF(boat)}
-                  className="p-2 text-green-400 hover:bg-gray-700 rounded-lg"
+                  className="p-2 text-green-400 hover:bg-gray-700 rounded-lg flex-1 lg:flex-none"
                   title="Export PDF"
                 >
-                  <FileText className="w-5 h-5" />
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
                 </button>
                 <button
                   onClick={() => editBoat(boat)}
-                  className="p-2 text-blue-400 hover:bg-gray-700 rounded-lg"
+                  className="p-2 text-blue-400 hover:bg-gray-700 rounded-lg flex-1 lg:flex-none"
                   title="Edit"
                 >
-                  <Edit className="w-5 h-5" />
+                  <Edit className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
                 </button>
                 <button
                   onClick={() => deleteBoat(boat)}
-                  className="p-2 text-red-400 hover:bg-gray-700 rounded-lg"
+                  className="p-2 text-red-400 hover:bg-gray-700 rounded-lg flex-1 lg:flex-none"
                   title="Delete"
                 >
-                  <Trash2 className="w-5 h-5" />
+                  <Trash2 className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
                 </button>
               </div>
             </div>
@@ -331,23 +333,23 @@ export default function Home() {
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4 text-red-400">Confirm Delete</h2>
-            <p className="text-gray-300 mb-6">
+          <div className="bg-gray-800 rounded-lg p-4 sm:p-6 w-full max-w-sm sm:max-w-md mx-4">
+            <h2 className="text-lg sm:text-xl font-bold mb-4 text-red-400">Confirm Delete</h2>
+            <p className="text-gray-300 mb-6 text-sm sm:text-base">
               Are you sure you want to delete the boat record for{' '}
               <span className="font-semibold text-white">{boatToDelete?.ownerName}</span>?
               This action cannot be undone.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
               <button
                 onClick={cancelDelete}
-                className="flex-1 bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-lg text-white font-medium"
+                className="flex-1 bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-lg text-white font-medium text-sm sm:text-base"
               >
                 Cancel
               </button>
               <button
                 onClick={confirmDelete}
-                className="flex-1 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-white font-medium"
+                className="flex-1 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-white font-medium text-sm sm:text-base"
               >
                 Delete
               </button>
@@ -404,134 +406,134 @@ function BoatForm({ boat, onSave, onCancel }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-gray-800 rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 z-50">
+      <div className="bg-gray-800 rounded-lg p-4 sm:p-6 w-full max-w-sm sm:max-w-2xl lg:max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto mx-2 sm:mx-4">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
           {boat ? 'Edit Boat Registration' : 'New Boat Registration'}
         </h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Owner Details Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-blue-400">Owner Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Owner Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Name of Owner *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Name of Owner *</label>
                 <input
                   type="text"
                   name="ownerName"
                   value={formData.ownerName}
                   onChange={handleChange}
                   placeholder="Enter owner name"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Name of Boat *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Name of Boat *</label>
                 <input
                   type="text"
                   name="boatName"
                   value={formData.boatName}
                   onChange={handleChange}
                   placeholder="Enter boat name"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-2">Address *</label>
+              <div className="sm:col-span-2">
+                <label className="block text-xs sm:text-sm font-medium mb-2">Address *</label>
                 <textarea
                   name="ownerAddress"
                   value={formData.ownerAddress}
                   onChange={handleChange}
                   placeholder="Enter complete address"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   rows={3}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Boat Builder (Full Name) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Boat Builder (Full Name) *</label>
                 <input
                   type="text"
                   name="boatBuilder"
                   value={formData.boatBuilder}
                   onChange={handleChange}
                   placeholder="Enter boat builder name"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Year of Build *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Year of Build *</label>
                 <input
                   type="text"
                   name="yearOfBuild"
                   value={formData.yearOfBuild}
                   onChange={handleChange}
                   placeholder="YYYY"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Engine Make *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Engine Make *</label>
                 <input
                   type="text"
                   name="engineMake"
                   value={formData.engineMake}
                   onChange={handleChange}
                   placeholder="Enter engine make"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Engine Serial No. *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Engine Serial No. *</label>
                 <input
                   type="text"
                   name="engineSerial"
                   value={formData.engineSerial}
                   onChange={handleChange}
                   placeholder="Enter engine serial number"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Horse Power *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Horse Power *</label>
                 <input
                   type="text"
                   name="horsePower"
                   value={formData.horsePower}
                   onChange={handleChange}
                   placeholder="Enter horse power"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">No. of Cylinder *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">No. of Cylinder *</label>
                 <input
                   type="text"
                   name="numberOfCylinders"
                   value={formData.numberOfCylinders}
                   onChange={handleChange}
                   placeholder="Enter number of cylinders"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-2">Place of Admeasurement *</label>
+              <div className="sm:col-span-2">
+                <label className="block text-xs sm:text-sm font-medium mb-2">Place of Admeasurement *</label>
                 <input
                   type="text"
                   name="placeOfAdmeasurement"
                   value={formData.placeOfAdmeasurement}
                   onChange={handleChange}
                   placeholder="Enter place of admeasurement"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
@@ -540,101 +542,101 @@ function BoatForm({ boat, onSave, onCancel }) {
 
           {/* Boat Measurements Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-blue-400">Boat Measurements</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Boat Measurements</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Register Length (RL) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Register Length (RL) *</label>
                 <input
                   type="text"
                   name="registerLength"
                   value={formData.registerLength}
                   onChange={handleChange}
                   placeholder="Enter RL"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Register Breadth (RB) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Register Breadth (RB) *</label>
                 <input
                   type="text"
                   name="registerBreadth"
                   value={formData.registerBreadth}
                   onChange={handleChange}
                   placeholder="Enter RB"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Register Depth (RD) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Register Depth (RD) *</label>
                 <input
                   type="text"
                   name="registerDepth"
                   value={formData.registerDepth}
                   onChange={handleChange}
                   placeholder="Enter RD"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Tonnage Length (TL) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Tonnage Length (TL) *</label>
                 <input
                   type="text"
                   name="tonnageLength"
                   value={formData.tonnageLength}
                   onChange={handleChange}
                   placeholder="Enter TL"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Tonnage Breadth (TB) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Tonnage Breadth (TB) *</label>
                 <input
                   type="text"
                   name="tonnageBreadth"
                   value={formData.tonnageBreadth}
                   onChange={handleChange}
                   placeholder="Enter TB"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Tonnage Depth (TD) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Tonnage Depth (TD) *</label>
                 <input
                   type="text"
                   name="tonnageDepth"
                   value={formData.tonnageDepth}
                   onChange={handleChange}
                   placeholder="Enter TD"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Gross Tonnage (GT) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Gross Tonnage (GT) *</label>
                 <input
                   type="text"
                   name="grossTonnage"
                   value={formData.grossTonnage}
                   onChange={handleChange}
                   placeholder="Enter GT"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Net Tonnage (NT) *</label>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Net Tonnage (NT) *</label>
                 <input
                   type="text"
                   name="netTonnage"
                   value={formData.netTonnage}
                   onChange={handleChange}
                   placeholder="Enter NT"
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                   required
                 />
               </div>
@@ -642,17 +644,17 @@ function BoatForm({ boat, onSave, onCancel }) {
           </div>
 
           {/* Form Actions */}
-          <div className="flex justify-end space-x-4 pt-6">
+          <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 pt-4 sm:pt-6">
             <button
               type="button"
               onClick={onCancel}
-              className="px-6 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg"
+              className="px-4 sm:px-6 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg text-sm sm:text-base order-2 sm:order-1"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg"
+              className="px-4 sm:px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm sm:text-base order-1 sm:order-2"
             >
               Save Record
             </button>
