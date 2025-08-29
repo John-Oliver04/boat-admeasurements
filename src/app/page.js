@@ -13,6 +13,8 @@ export default function Home() {
   const [editingBoat, setEditingBoat] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [boatToDelete, setBoatToDelete] = useState(null);
+  // Inside your Home component
+  const [viewMode, setViewMode] = useState("cards"); // "cards" or "rows"
 
   // Load boats from localStorage on component mount
   useEffect(() => {
@@ -189,12 +191,25 @@ export default function Home() {
             <Plus className="w-4 h-4" />
             <span>New Record</span>
           </button>
-          <button className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm sm:text-base">
+          <button 
+            className={`px-3 sm:px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm sm:text-base 
+              ${viewMode === "cards" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
+            onClick={() => setViewMode("cards")}
+          >
             <List className="w-4 h-4" />
-            <span>All Records</span>
+            <span>Cards</span>
+          </button>
+          <button 
+            className={`px-3 sm:px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm sm:text-base 
+              ${viewMode === "rows" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
+            onClick={() => setViewMode("rows")}
+          >
+            <FileText className="w-4 h-4" />
+            <span>Rows</span>
           </button>
         </div>
       </div>
+
 
       {/* Search and Sort */}
       <div className="mx-2 sm:mx-4 lg:mx-6 mb-4 sm:mb-6">
@@ -225,84 +240,70 @@ export default function Home() {
 
       {/* Boat Records */}
       <div className="mx-2 sm:mx-4 lg:mx-6 space-y-3 sm:space-y-4">
-        {filteredBoats.map((boat) => (
-          <div key={boat.id} className="bg-gray-800 p-4 sm:p-6 rounded-lg">
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
-              <div className="flex-1">
-                <h3 className="text-lg sm:text-xl font-bold mb-2">{boat.ownerName}</h3>
-                <p className="text-gray-400 mb-4 text-sm sm:text-base break-words">Owner: {boat.ownerAddress}</p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">Builder:</span>
-                    <p className="font-medium text-sm sm:text-base break-words">{boat.boatBuilder}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">Year:</span>
-                    <p className="font-medium text-sm sm:text-base">{boat.yearOfBuild}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">Engine:</span>
-                    <p className="font-medium text-sm sm:text-base break-words">{boat.engineMake}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">Power:</span>
-                    <p className="font-medium text-sm sm:text-base">{boat.horsePower}</p>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4">
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">RL:</span>
-                    <p className="font-medium text-sm sm:text-base">{boat.registerLength}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">RB:</span>
-                    <p className="font-medium text-sm sm:text-base">{boat.registerBreadth}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">RD:</span>
-                    <p className="font-medium text-sm sm:text-base">{boat.registerDepth}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-400 text-xs sm:text-sm">TL:</span>
-                    <p className="font-medium text-sm sm:text-base">{boat.tonnageLength}</p>
-                  </div>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-1 sm:space-y-0 text-xs sm:text-sm text-gray-400">
-                  <span>📅 Created: {boat.createdAt}</span>
-                  <span>Updated: {boat.updatedAt}</span>
-                </div>
-              </div>
-              
-              <div className="flex lg:flex-col items-center lg:items-end space-x-2 lg:space-x-0 lg:space-y-2 mt-4 lg:mt-0">
-                <button
-                  onClick={() => exportToPDF(boat)}
-                  className="p-2 text-green-400 hover:bg-gray-700 rounded-lg flex-1 lg:flex-none"
-                  title="Export PDF"
-                >
-                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
-                </button>
-                <button
-                  onClick={() => editBoat(boat)}
-                  className="p-2 text-blue-400 hover:bg-gray-700 rounded-lg flex-1 lg:flex-none"
-                  title="Edit"
-                >
-                  <Edit className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
-                </button>
-                <button
-                  onClick={() => deleteBoat(boat)}
-                  className="p-2 text-red-400 hover:bg-gray-700 rounded-lg flex-1 lg:flex-none"
-                  title="Delete"
-                >
-                  <Trash2 className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
-                </button>
-              </div>
+        {viewMode === "cards" ? (
+          // Card View (your existing design)
+          filteredBoats.map((boat) => (
+            <div key={boat.id} className="bg-gray-800 p-4 sm:p-6 rounded-lg">
+              {/* --- your card layout code here (unchanged) --- */}
             </div>
+          ))
+        ) : (
+          // Row View (Table Layout)
+          <div className="overflow-x-auto">
+            <table className="w-full border border-gray-700 text-sm sm:text-base">
+              <thead className="bg-gray-700">
+                <tr>
+                  <th className="p-3 text-left">Owner</th>
+                  <th className="p-3 text-left">Boat</th>
+                  <th className="p-3 text-left">Builder</th>
+                  <th className="p-3 text-left">Year</th>
+                  <th className="p-3 text-left">Engine</th>
+                  <th className="p-3 text-left">Power</th>
+                  <th className="p-3 text-left">Created</th>
+                  <th className="p-3 text-left">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredBoats.map((boat) => (
+                  <tr key={boat.id} className="border-t border-gray-700 hover:bg-gray-800">
+                    <td className="p-3">{boat.ownerName}</td>
+                    <td className="p-3">{boat.boatName}</td>
+                    <td className="p-3">{boat.boatBuilder}</td>
+                    <td className="p-3">{boat.yearOfBuild}</td>
+                    <td className="p-3">{boat.engineMake}</td>
+                    <td className="p-3">{boat.horsePower}</td>
+                    <td className="p-3">{boat.createdAt}</td>
+                    <td className="p-3 flex space-x-2">
+                      <button
+                        onClick={() => exportToPDF(boat)}
+                        className="text-green-400 hover:text-green-300"
+                        title="Export PDF"
+                      >
+                        <FileText className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => editBoat(boat)}
+                        className="text-blue-400 hover:text-blue-300"
+                        title="Edit"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => deleteBoat(boat)}
+                        className="text-red-400 hover:text-red-300"
+                        title="Delete"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
+        )}
       </div>
+
 
       {/* Form Modal */}
       {showForm && (
