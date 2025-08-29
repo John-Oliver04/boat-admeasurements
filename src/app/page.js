@@ -244,7 +244,68 @@ export default function Home() {
           // Card View (your existing design)
           filteredBoats.map((boat) => (
             <div key={boat.id} className="bg-gray-800 p-4 sm:p-6 rounded-lg">
-              {/* --- your card layout code here (unchanged) --- */}
+              {/* Card Layout */}
+              <div className="bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-700 pb-4 mb-4">
+                  <div>
+                    <h2 className="text-lg sm:text-xl font-bold">{boat.boatName}</h2>
+                    <p className="text-gray-400 text-sm">Owner: {boat.ownerName}</p>
+                    <p className="text-gray-400 text-sm">Built: {boat.yearOfBuild} by {boat.boatBuilder}</p>
+                  </div>
+                  <div className="mt-3 sm:mt-0 flex space-x-3">
+                    <button
+                      onClick={() => exportToPDF(boat)}
+                      className="text-green-400 hover:text-green-300"
+                      title="Export PDF"
+                    >
+                      <FileText className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => editBoat(boat)}
+                      className="text-blue-400 hover:text-blue-300"
+                      title="Edit"
+                    >
+                      <Edit className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => deleteBoat(boat)}
+                      className="text-red-400 hover:text-red-300"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              
+                {/* Boat Details */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+                  <div>
+                    <p className="text-gray-400">Engine</p>
+                    <p className="font-medium">{boat.engineMake}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Power</p>
+                    <p className="font-medium">{boat.horsePower}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Cylinders</p>
+                    <p className="font-medium">{boat.numberOfCylinders}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Gross Tonnage</p>
+                    <p className="font-medium">{boat.grossTonnage}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Net Tonnage</p>
+                    <p className="font-medium">{boat.netTonnage}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Created</p>
+                    <p className="font-medium">{boat.createdAt}</p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           ))
         ) : (
