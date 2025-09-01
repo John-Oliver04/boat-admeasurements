@@ -167,6 +167,12 @@ export default function Home() {
     setShowForm(true);
   };
 
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col pb-20">
       {/* Header */}
